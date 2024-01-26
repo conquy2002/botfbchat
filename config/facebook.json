@@ -1,0 +1,10 @@
+{
+    "appId":219994525426954,
+    "capabilities":10,
+    "chatVisibility":false,
+    "clientCapabilities":3,
+    "endpoint":"wss://edge-chat.facebook.com/chat?region=pnb",
+    "initialSubscribedTopics":[],
+    "phpOverride":"",
+    "pollingEndpoint":"https://edge-chat.facebook.com/mqtt/pull?region=pnb"
+}
