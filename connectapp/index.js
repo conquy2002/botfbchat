@@ -1,13 +1,15 @@
-const WebSocket = require('ws');
+const configWs = require("../config/ws.json");
+const WebSocket = require("ws");
 
-const wss = new WebSocket.Server({ port: 8080 });
+const wss = new WebSocket.Server({ port: configWs.port });
+const switchType = {
+  1: createUser,
+};
 
-wss.on('connection', function connection(ws) {
-  console.log('New client connected');
-
-  ws.on('message', function incoming(message) {
-    console.log('Received: %s', message);
+wss.on("connection", function connection(ws) {
+  ws.on("message", function incoming(message) {
+    if (typeof message === "object") {
+    }
   });
-
-  ws.send('Hello! Welcome to the WebSocket server.');
 });
+function createUser({ message }) {}
