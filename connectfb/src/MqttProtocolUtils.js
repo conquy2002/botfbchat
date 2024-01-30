@@ -69,11 +69,7 @@ function j(a, b, c) {
       ? ((b[c++] = 192 | (f >> 6)), (b[c++] = 128 | (f & 63)))
       : f < 55296 || f >= 57344
       ? ((b[c++] = 224 | (f >> 12)), (b[c++] = 128 | ((f >> 6) & 63)), (b[c++] = 128 | (f & 63)))
-      : ((f = 65536 + (((f & 1023) << 10) | (a.charCodeAt(++d) & 1023))),
-        (b[c++] = 240 | (f >> 18)),
-        (b[c++] = 128 | ((f >> 12) & 63)),
-        (b[c++] = 128 | ((f >> 6) & 63)),
-        (b[c++] = 128 | (f & 63)));
+      : ((f = 65536 + (((f & 1023) << 10) | (a.charCodeAt(++d) & 1023))), (b[c++] = 240 | (f >> 18)), (b[c++] = 128 | ((f >> 12) & 63)), (b[c++] = 128 | ((f >> 6) & 63)), (b[c++] = 128 | (f & 63)));
   }
 }
 function k(a, b, c) {
@@ -99,7 +95,7 @@ function k(a, b, c) {
       d[f++] = String.fromCharCode(((g & 15) << 12) | ((i & 63) << 6) | (j & 63));
     }
   }
-  return d.join('');
+  return d.join("");
 }
 var l = (function () {
   function a(a, b, c, d) {
@@ -141,4 +137,11 @@ g.writeUInt16BE = h;
 g.readUInt16BE = e;
 g.writeString = i;
 g.Pinger = l;
+g.uuidv4 = function a() {
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (a) {
+    var b = (Math.random() * 16) | 0;
+    a = a === "x" ? b : (b & 3) | 8;
+    return a.toString(16);
+  });
+};
 module.exports = g;

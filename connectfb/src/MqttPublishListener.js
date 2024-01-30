@@ -1,0 +1,8 @@
+module.exports = Object.freeze({
+  NOT_CONNECTED: "NOT_CONNECTED",
+  PUBLISH_ERROR: "PUBLISH_ERROR",
+  QUEUED: "QUEUED",
+  SENT: "SENT",
+  ACKED: "ACKED",
+  NOT_ACKED: "NOT_ACKED",
+});
