@@ -1,3 +1,4 @@
 {
-    "port": 1902
+  "port": 1902,
+  "timeoutSession": 600
 }
