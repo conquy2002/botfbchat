@@ -1,5 +1,5 @@
-const WebSocket = require('ws');
-const net = require('net');
+const WebSocket = require("ws");
+const net = require("net");
 
 const app = {
   WebSocketSever: null,
@@ -23,9 +23,9 @@ app.start = async function () {
 };
 app.createServer = function () {
   let wssever = new WebSocket.Server({ port: this.config.port });
-  wssever.on('connection', (ws) => {
-    ws.on('message', function (message) {
-      if (message instanceof Buffer) message = message.toString('utf-8');
+  wssever.on("connection", (ws) => {
+    ws.on("message", function (message) {
+      if (message instanceof Buffer) message = message.toString("utf-8");
       try {
         message = JSON.parse(message);
       } catch (e) {}
@@ -41,7 +41,7 @@ app.close = function () {
   this.WebSocketSever = null;
 };
 app.action = function (message) {
-  if (getType(message) === 'Object') {
+  if (getType(message) === "Object") {
     const listFunctionType = {
       1: createUser,
     };
@@ -53,15 +53,6 @@ app.action = function (message) {
 app.createUser = function (ws, cookie) {
   let token = null;
   let seft = this;
-  if (cookie && getType(cookie) === 'Array') {
-    let userId = cookie.find((k) => k.key === 'c_user')?.value;
-    if (!userId)
-      return ws.send(
-        'Lỗi truy xuất ID người dùng. Điều này có thể do nhiều nguyên nhân gây ra, bao gồm cả việc bị Facebook chặn đăng nhập từ một địa điểm không xác định. Hãy thử đăng nhập bằng trình duyệt để xác minh.'
-      );
-
-    seft.listAccount.some((a) => a.userId === userId);
-  }
 };
 app.getToken = function (usename, password, userId) {
   let token = this.listAccount.some((a) => a.userId == userId || a.usename == usename)?.token;
@@ -75,10 +66,10 @@ app.getToken = function (usename, password, userId) {
 function portInUse(port) {
   return new Promise((resolve) => {
     const server = net.createServer();
-    server.once('error', () => {
+    server.once("error", () => {
       resolve(true);
     });
-    server.once('listening', () => {
+    server.once("listening", () => {
       server.close();
       resolve(false);
     });
