@@ -1,7 +1,7 @@
 //init
 require('./utils');
 const CONFIG = require('./config');
-const listSession = require('./database/session.json');
+const listAccount = require('./database/account.json');
 const wssever = require('./wsServer');
 
 const app = {
@@ -13,7 +13,7 @@ app.start = async function () {
   //tạo 1 wssever
   wssever.setInstance({
     config: CONFIG.ws,
-    listSession: listSession,
+    listAccount: listAccount,
   });
   await wssever.start();
   LOG(`Khởi tạo websocket server tại ws://localhost:${CONFIG.ws.port}`);

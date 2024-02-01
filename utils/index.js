@@ -11,7 +11,7 @@ const colorStatus = {
     system: 'magenta',
     msg: 'yellow',
   },
-  nor: {
+  log: {
     system: 'green',
     msg: 'white',
   },
@@ -22,14 +22,18 @@ global.objectFilter = (obj, predicate) =>
   Object.keys(obj)
     .filter((key) => predicate(obj[key]))
     .reduce((res, key) => ((res[key] = obj[key]), res), {});
-global.LOG = (msg, obj, status = 'nor') => {
-  if (typeof msg != 'string') return console.log(msg);
-  getType(obj) == 'String' && ((status = obj), (obj = ''));
-  !obj && (obj = '');
-  var color = colorStatus[status];
-  if (!color) color = colorStatus['nor'];
-  return console.log(` [ ${'Hệ thống'[color.system]} ] ►►►► ` + msg[color.msg], obj);
-};
+
+['log', 'error', 'warn'].forEach((a) => {
+  global[a.toLocaleUpperCase()] = (msg, obj) => {
+    if (typeof msg != 'string') return console.log(msg);
+    getType(obj) == 'String' && ((a = obj), (obj = ''));
+    !obj && (obj = '');
+    var color = colorStatus[a];
+    if (!color) color = colorStatus['log'];
+    return console.log(` [ ${'Hệ thống'[color.system]} ] ►►►► ` + msg[color.msg], obj);
+  };
+});
+
 global.FILE = {
   saveFile: (name, data, dir, hasName) => {
     if (dir == null) dir = `./`;
